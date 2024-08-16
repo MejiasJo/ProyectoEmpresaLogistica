@@ -12,39 +12,37 @@ import people.Person;
  * @author zulay
  */
 public class Employee extends Person {
-    private String puesto;
-    private double salario;
+    private String position;
+    private double salary;
 
-    public String getPuesto() {
-        return puesto;
+    public String getPosition() {
+        return position;
     }
 
-    public double getSalario() {
-        return salario;
+    public double getSalary() {
+        return salary;
     }
 
-    public void setPuesto(String puesto) {
-        this.puesto = puesto;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
-    public void setSalario(double salario) {
-        this.salario = salario;
+    public void setSalary(double salary) {
+        this.salary = salary;
     }
 
-    public Employee(String puesto, double salario, String identificacion, String nombre, LocalDate fechaNacimiento, String telefono, String correo) {
-        super(identificacion, nombre, fechaNacimiento, telefono, correo);
-        this.puesto = puesto;
-        this.salario = salario;
+    public Employee(String position, double salary, String id, String name, LocalDate birthDate, String phone, String email) {
+        super(id, name, birthDate, phone, email);
+        this.position = position;
+        this.salary = salary;
     }
      
     public Employee() {
-    this("", 0.0, "", "", null, "", "");       
+        this("", 0.0, "", "", null, "", "");       
     }
 
     @Override
     public String toString() {
-        return super.toString() + "puesto=" + puesto + ", salario=" + salario + '}';
+        return super.toString() + " position=" + position + ", salary=" + salary;
     }
-    
-    
 }
