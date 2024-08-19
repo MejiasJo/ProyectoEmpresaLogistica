@@ -10,7 +10,7 @@ import java.time.LocalDate;
  *
  * @author zulay
  */
- public class Person {
+ public abstract class Person {
   private String id;
   private String name;
   private LocalDate birthDate;
