@@ -23,12 +23,9 @@ public class Employee extends Person {
         return salary;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(String position, double salary) {
         this.position = position;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
+        this.salary = salary; // Actualiza el salario junto con el puesto
     }
 
     public Employee(String position, double salary, String id, String name, LocalDate birthDate, String phone, String email) {
