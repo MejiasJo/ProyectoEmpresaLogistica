@@ -20,14 +20,8 @@ public class EmployeeList {
     }
 
     //Agregar
-<<<<<<< HEAD
-    public void addEmployee(String id, String name, LocalDate birthDate, String phone, String email, String position, double salary) {
-        Employee newEmployee = new Employee(position, salary, id, name, birthDate, phone, email);
-        employees.add(newEmployee);
-=======
     public void addEmployee(Employee employee) {
      employees.add(employee);
->>>>>>> Zulay
     }
     
     //actualizar
