@@ -4,11 +4,16 @@
  */
 package customers;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author zulay
  */
 public class FrmSearchCustumer extends javax.swing.JDialog {
+
+    CustomerList list;
+    private Customer custom;
 
     /**
      * Creates new form FrmSearchCustumer
@@ -16,6 +21,15 @@ public class FrmSearchCustumer extends javax.swing.JDialog {
     public FrmSearchCustumer(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    public Customer getCustom() {
+        return custom;
+    }
+
+    public void setList(CustomerList list) {
+        this.list = list;
+        this.cargar();
     }
 
     /**
@@ -29,13 +43,13 @@ public class FrmSearchCustumer extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtIdentificacion = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblAnimales = new javax.swing.JTable();
+        tblCustomers = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         btnSearch = new javax.swing.JButton();
-        btnSearch1 = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Bucador de clientes");
@@ -47,9 +61,14 @@ public class FrmSearchCustumer extends javax.swing.JDialog {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Identificación");
 
-        jTextField1.setBackground(new java.awt.Color(152, 202, 202));
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
+        txtIdentificacion.setBackground(new java.awt.Color(152, 202, 202));
+        txtIdentificacion.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtIdentificacion.setForeground(new java.awt.Color(0, 0, 0));
+        txtIdentificacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIdentificacionKeyReleased(evt);
+            }
+        });
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
@@ -60,8 +79,8 @@ public class FrmSearchCustumer extends javax.swing.JDialog {
 
         jScrollPane1.setBackground(new java.awt.Color(217, 246, 248));
 
-        tblAnimales.setBackground(new java.awt.Color(152, 202, 202));
-        tblAnimales.setModel(new javax.swing.table.DefaultTableModel(
+        tblCustomers.setBackground(new java.awt.Color(152, 202, 202));
+        tblCustomers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -93,35 +112,42 @@ public class FrmSearchCustumer extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        tblAnimales.setSelectionBackground(new java.awt.Color(0, 153, 153));
-        jScrollPane1.setViewportView(tblAnimales);
+        tblCustomers.setSelectionBackground(new java.awt.Color(0, 153, 153));
+        jScrollPane1.setViewportView(tblCustomers);
 
         jPanel2.setBackground(new java.awt.Color(217, 246, 248));
 
         btnSearch.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnSearch.setForeground(new java.awt.Color(0, 0, 0));
-        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/Search_64 (2).png"))); // NOI18N
-        btnSearch.setText("Buscar");
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/receipt_add_64.png"))); // NOI18N
+        btnSearch.setText("Registro");
         btnSearch.setBorderPainted(false);
         btnSearch.setContentAreaFilled(false);
         btnSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnSearch.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/Search_72 (1).png"))); // NOI18N
+        btnSearch.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/receipt_add_64.png"))); // NOI18N
+        btnSearch.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/receipt_add_72.png"))); // NOI18N
         btnSearch.setVerifyInputWhenFocusTarget(false);
         btnSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        btnSearch1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnSearch1.setForeground(new java.awt.Color(0, 0, 0));
-        btnSearch1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/cancel_64.png"))); // NOI18N
-        btnSearch1.setText("Cancelar");
-        btnSearch1.setBorderPainted(false);
-        btnSearch1.setContentAreaFilled(false);
-        btnSearch1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnSearch1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/cancel_74.png"))); // NOI18N
-        btnSearch1.setVerifyInputWhenFocusTarget(false);
-        btnSearch1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnSearch1.addActionListener(new java.awt.event.ActionListener() {
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearch1ActionPerformed(evt);
+                btnSearchActionPerformed(evt);
+            }
+        });
+
+        btnCancel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnCancel.setForeground(new java.awt.Color(0, 0, 0));
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel_64.png"))); // NOI18N
+        btnCancel.setText("Cancelar");
+        btnCancel.setBorderPainted(false);
+        btnCancel.setContentAreaFilled(false);
+        btnCancel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCancel.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel_64.png"))); // NOI18N
+        btnCancel.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel_72.png"))); // NOI18N
+        btnCancel.setVerifyInputWhenFocusTarget(false);
+        btnCancel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
             }
         });
 
@@ -131,17 +157,17 @@ public class FrmSearchCustumer extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(199, 199, 199)
-                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(112, 112, 112)
-                .addComponent(btnSearch1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addComponent(btnSearch)
+                .addGap(104, 104, 104)
+                .addComponent(btnCancel)
+                .addContainerGap(183, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnSearch1)
+                    .addComponent(btnCancel)
                     .addComponent(btnSearch))
                 .addContainerGap())
         );
@@ -157,7 +183,7 @@ public class FrmSearchCustumer extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane1)
@@ -171,7 +197,7 @@ public class FrmSearchCustumer extends javax.swing.JDialog {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -193,9 +219,38 @@ public class FrmSearchCustumer extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearch1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSearch1ActionPerformed
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        custom = null;
+        this.dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        try {
+            String identificacion = String.valueOf(tblCustomers.getValueAt(tblCustomers.getSelectedRow(), 0));
+            this.custom = list.findCustomerById(identificacion);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            custom = null;
+        }
+        this.dispose();
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void txtIdentificacionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdentificacionKeyReleased
+        this.cargar();
+    }//GEN-LAST:event_txtIdentificacionKeyReleased
+
+    private void cargar() {
+        DefaultTableModel model = (DefaultTableModel) tblCustomers.getModel();
+        model.setRowCount(0);
+        for (Customer objeto : list.filteredCustomers(this.txtIdentificacion.getText())) {
+            if (objeto == null) {
+                continue;
+            }
+            Object datos[] = {objeto.getId(), objeto.getName(),
+                objeto.getAge(), objeto.getPhone(), objeto.getEmail()};
+            model.addRow(datos);
+        }
+        tblCustomers.setModel(model);
+    }
 
     /**
      * @param args the command line arguments
@@ -240,14 +295,14 @@ public class FrmSearchCustumer extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JButton btnSearch1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTable tblAnimales;
+    private javax.swing.JTable tblCustomers;
+    private javax.swing.JTextField txtIdentificacion;
     // End of variables declaration//GEN-END:variables
 }
