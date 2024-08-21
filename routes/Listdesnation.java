@@ -38,4 +38,18 @@ public class Listdesnation extends Route {
         }
         return null;
     }
-}
+    public Route[] filterRoutes(String description) {
+       
+        HashSet<Route> filteredRoutes = new HashSet<>();
+        for (Route route : routes) {
+            if (route.getDescription() != null && route.getDescription().toLowerCase().contains(description.toLowerCase())) {
+                filteredRoutes.add(route);
+            }
+        } 
+        Route[] result = new Route[filteredRoutes.size()];
+        return filteredRoutes.toArray(result);
+    }
+    
+    
+    }
+
