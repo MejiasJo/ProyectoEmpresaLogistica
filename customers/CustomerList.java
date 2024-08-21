@@ -19,16 +19,14 @@ public class CustomerList {
         customers = new ArrayList<>();
     }
 
-    public void addCustomer(String id, String name, LocalDate birthDate, String phone, String email) {
-        Customer newCustomer = new Customer(id, name, birthDate, phone, email);
-        customers.add(newCustomer);
+    public void addCustomer(Customer customer) {
+        customers.add(customer);
     }
 
-    public boolean updateCustomer(String id, String newPhone, String newEmail) {
-        Customer customer = findCustomerById(id);
-        if (customer != null) {
-            customer.setPhone(newPhone);
-            customer.setEmail(newEmail);
+    public boolean updateCustomer(Customer customer) {
+        int index = customers.indexOf(customer);
+        if (index !=-1) {
+            customers.set(index, customer);
             return true;
         }
         return false;
@@ -65,4 +63,24 @@ public class CustomerList {
         // Aquí se debería implementar la lógica para verificar si el cliente tiene paquetes en tránsito.
         return false;
     } 
+    
+    public ArrayList<Customer> filteredCustomers(String text) {
+        ArrayList<Customer> filteredCustomers = new ArrayList();
+
+        if (text.equals("")) {
+            for (Customer custom : this.customers) {
+                if (custom != null) {
+                    filteredCustomers.add(custom);
+                }
+            }
+            return filteredCustomers;
+        } else {
+            for (Customer custom : this.customers) {
+                if (custom != null && custom.getId().toLowerCase().contains(text.toLowerCase())) {
+                    filteredCustomers.add(custom);
+                }
+            }
+            return filteredCustomers;
+        }
+    }
 }
