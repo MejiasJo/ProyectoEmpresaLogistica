@@ -18,7 +18,7 @@ public class Package {
     private double weight;
     private Customer sender;
     private Customer addressee;
-    private PackageState state;
+    private PackageState status;
 
     public static int getCounter() {
         return counter;
@@ -45,9 +45,26 @@ public class Package {
     }
 
     public PackageState getState() {
-        return state;
+        return status;
     }
 
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public void setSender(Customer sender) {
+        this.sender = sender;
+    }
+
+    public void setStatus(String status) {
+        this.status = PackageState.valueOf(status);
+    }
+   
     public void setDescription(String description) {
         this.description = description;
     }
@@ -56,24 +73,23 @@ public class Package {
         this.addressee = addressee;
     }
 
- 
     public Package(String description, double weight, Customer sender, Customer addressee) {
-        this.code = counter++;
+        this.code = counter ++;
         this.description = description;
         this.weight = weight;
         this.sender = sender;
         this.addressee = addressee;
-        this.state = PackageState.InWarehouse;
+        this.status = PackageState.InWarehouse;
     }
 
     public Package() {
-        this("",0,"","");
+        this("",0,new Customer() ,new Customer());
     }
 
     @Override
-    public String toString() {
+     public String toString() {
         return "Package" + "code=" + code + ", description=" + description + ", weight=" + weight 
-                + ", sender=" + sender + ", addressee=" + addressee + ", state=" + state;
+                + ", sender= (" + sender + "), addressee= (" + addressee + "), state=" + status;
     }
   
 }
