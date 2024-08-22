@@ -23,14 +23,14 @@ public class FrmRoute extends javax.swing.JInternalFrame {
     private static int count = 1;
     Listdesnation list;
     Route rout;
-    DefaultTableModel tabla;
+    //DefaultTableModel tabla;
 
-    public Route getEmplo() {
+    public Route getRout() {
         return rout;
     }
 
-    public void setEmplo(Route emplo) {
-        this.rout = emplo;
+    public void setRout(Route route) {
+        this.rout = route;
     }
 
     public Listdesnation getList() {
@@ -46,17 +46,12 @@ public class FrmRoute extends javax.swing.JInternalFrame {
      */
     public FrmRoute() {
         initComponents();
-        this.BotAdd.setEnabled(true);
-        this.btnLimpiar.setEnabled(true);
-        this.btnSearch.setEnabled(true);
         this.setLocale(null);
-        list = new Listdesnation();
+        this.TxTCode.setText(String.valueOf(count));
     }
 
     public void destino() {
-
         String[] descriptionsArray = TxTDescripList.getText().split(",");
-        //HashSet<String> listDescriptions = new HashSet<>(Arrays.asList(descriptionsArray)); 
         for (String destino : descriptionsArray) {
             rout.addDestiny(destino);
         }
@@ -81,7 +76,7 @@ public class FrmRoute extends javax.swing.JInternalFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        BotAdd = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -96,6 +91,7 @@ public class FrmRoute extends javax.swing.JInternalFrame {
         btnUpdate = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
+        setClosable(true);
         setTitle("Administrador de rutas de entrega");
 
         jPanel2.setBackground(new java.awt.Color(217, 246, 248));
@@ -104,19 +100,19 @@ public class FrmRoute extends javax.swing.JInternalFrame {
         jPanel4.setBackground(new java.awt.Color(217, 246, 248));
         jPanel4.setDoubleBuffered(false);
 
-        BotAdd.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
-        BotAdd.setForeground(new java.awt.Color(0, 0, 0));
-        BotAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shipping_add_64.png"))); // NOI18N
-        BotAdd.setText("Agregar");
-        BotAdd.setBorderPainted(false);
-        BotAdd.setContentAreaFilled(false);
-        BotAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        BotAdd.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shipping_add_72.png"))); // NOI18N
-        BotAdd.setVerifyInputWhenFocusTarget(false);
-        BotAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BotAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(0, 0, 0));
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shipping_add_64.png"))); // NOI18N
+        btnAdd.setText("Agregar");
+        btnAdd.setBorderPainted(false);
+        btnAdd.setContentAreaFilled(false);
+        btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdd.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shipping_add_72.png"))); // NOI18N
+        btnAdd.setVerifyInputWhenFocusTarget(false);
+        btnAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotAddActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
@@ -171,11 +167,6 @@ public class FrmRoute extends javax.swing.JInternalFrame {
         TxTDescripList.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         TxTDescripList.setForeground(new java.awt.Color(0, 0, 0));
         TxTDescripList.setText("Separe los destinos con  ','");
-        TxTDescripList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxTDescripListActionPerformed(evt);
-            }
-        });
 
         TxTDescription.setBackground(new java.awt.Color(152, 202, 202));
         TxTDescription.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -229,35 +220,41 @@ public class FrmRoute extends javax.swing.JInternalFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(BotAdd)
-                        .addGap(42, 42, 42)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TxTCode, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TxTName, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(TxTDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TxTDescripList, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 26, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TxTCode, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TxTName, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
+                                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(301, 301, 301))
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                            .addComponent(btnAdd)
+                                            .addGap(47, 47, 47)
+                                            .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18))
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                            .addComponent(jLabel5)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(TxTDescripList, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)))
+                            .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(36, 36, 36)
+                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(17, 17, 17))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(TxTDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,13 +274,14 @@ public class FrmRoute extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5)
                     .addComponent(TxTDescripList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(BotAdd, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSearch, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnAdd, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(btnUpdate))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -326,13 +324,14 @@ public class FrmRoute extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BotAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotAddActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         try {
             comprovacionDesti();
             this.TxTCode.setEditable(false);
             this.TxTName.setEditable(false);
             this.TxTDescription.setEditable(false);
             this.TxTDescripList.setEditable(false);
+            count++;
 
             String nombre = this.TxTName.getText();
             String description = this.TxTDescription.getText();
@@ -341,18 +340,12 @@ public class FrmRoute extends javax.swing.JInternalFrame {
             destino();
             list.addRount(rout);
 
-            BotAdd.setEnabled(false);
+            btnAdd.setEnabled(false);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "El campo destino no puede estar vacio o se debe separar por ','");
         }
 
-    }//GEN-LAST:event_BotAddActionPerformed
-
-    private void TxTDescripListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxTDescripListActionPerformed
-        // TODO add your handling code here:
-
-
-    }//GEN-LAST:event_TxTDescripListActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
 
@@ -361,7 +354,6 @@ public class FrmRoute extends javax.swing.JInternalFrame {
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);
         this.rout = frm.getRout();
-        rout = frm.getRout();
         if (this.list != null) {
             this.TxTCode.setText(String.valueOf(list.getCode()));
             this.TxTName.setText(list.getName());
@@ -374,31 +366,28 @@ public class FrmRoute extends javax.swing.JInternalFrame {
 
             this.TxTCode.setEditable(false);
             this.TxTName.setEditable(false);
-            this.TxTDescription.setEditable(false);
-            this.TxTDescripList.setEditable(false);
+            this.TxTDescription.setEditable(true);
+            this.TxTDescripList.setEditable(true);
 
             this.btnUpdate.setEnabled(true);
             this.btnDelete.setEnabled(true);
-
+            this.btnAdd.setEnabled(false);
+            }
     }//GEN-LAST:event_btnSearchActionPerformed
 
-        this.BotAdd.setEnabled(true);
-    }
-
-
+        
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
 
-        this.TxTCode.setEditable(true);
         this.TxTDescription.setEditable(true);
         this.TxTName.setEditable(true);
         this.TxTDescripList.setEditable(true);
 
-        this.TxTCode.setText("");
+        this.TxTCode.setText(String.valueOf(count));
         this.TxTDescription.setText("");
         this.TxTName.setText("");
-        this.TxTDescripList.setText("Separe los destinos con  ',' ");
+        this.TxTDescripList.setText("Separe los destinos con  ','");
 
-        this.BotAdd.setEnabled(true);
+        this.btnAdd.setEnabled(true);
         this.btnDelete.setEnabled(false);
         this.btnUpdate.setEnabled(false);
 
@@ -410,14 +399,14 @@ public class FrmRoute extends javax.swing.JInternalFrame {
         try {
             this.list.deleteRoute(rout.getCode());
 
-            this.TxTCode.setText("");
+            this.TxTCode.setText(String.valueOf(count));
             this.TxTDescription.setText("");
             this.TxTName.setText("");
-            this.TxTDescripList.setText("");
+            this.TxTDescripList.setText("Separe los destinos con  ','");
 
-            list = null;
             this.btnDelete.setEnabled(false);
             this.btnUpdate.setEnabled(false);
+            rout = null;
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
@@ -427,14 +416,13 @@ public class FrmRoute extends javax.swing.JInternalFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         int code = Integer.parseInt(this.TxTCode.getText());
-        String nombre = this.TxTName.getText();
         String description = this.TxTDescription.getText();
-        String[] descriptionsArray = TxTDescripList.getText().split(",");
-        HashSet<String> listDescriptions = new HashSet<>(Arrays.asList(descriptionsArray));
 
         rout = this.list.searchRoute(code);
+        destino();
         list.setDescription(description);
         this.list.updateRout(rout);
+        rout = null;
 
         this.btnDelete.setEnabled(false);
         this.btnUpdate.setEnabled(false);
@@ -443,11 +431,11 @@ public class FrmRoute extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotAdd;
     private javax.swing.JTextField TxTCode;
     private javax.swing.JTextField TxTDescripList;
     private javax.swing.JTextField TxTDescription;
     private javax.swing.JTextField TxTName;
+    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnSearch;

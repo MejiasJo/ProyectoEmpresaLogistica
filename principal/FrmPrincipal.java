@@ -239,7 +239,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRouteActionPerformed
-//        frmRoute.setList(routeList);
+        frmRoute.setList(routeList);
         this.deskTop.add(frmRoute);
         frmRoute.setLocation((this.deskTop.getWidth()-frmRoute.getWidth())/2, 
                 (this.deskTop.getHeight()-frmRoute.getHeight())/2);

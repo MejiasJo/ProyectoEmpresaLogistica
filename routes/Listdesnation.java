@@ -18,8 +18,8 @@ public class Listdesnation extends Route {
         routes = new HashSet<>();
     }
     
-    public void addRount(String Rount) {
-        destinationList.add(Rount);
+    public void addRount(Route rount) {
+        routes.add(rount);
     }
 
     public void deleteRoute(int code) {

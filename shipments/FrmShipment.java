@@ -638,7 +638,9 @@ public class FrmShipment extends javax.swing.JInternalFrame {
             this.txtClient.setText(shipment.getClient().getName());
             this.txtShipmentDate.setText(shipment.getShipmentDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             this.txtPack.setText(shipment.getPack().getDescription());
+            if(shipment.getPack().getState().Delivered.equals("Delivered")){
             this.txtDeliveryDate.setText(shipment.getDeliveryDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            }
             this.txtRoute.setText(shipment.getRoute().getName());
             this.txtPrice.setText(String.valueOf(shipment.getPrice()));
         }
@@ -680,6 +682,7 @@ public class FrmShipment extends javax.swing.JInternalFrame {
     private void btnCancelPackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelPackActionPerformed
         try {
             this.shipment.cancelShipment(pack);
+            this.history.addShipment(shipment);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "El paquete debio estar En Almacén, para su Cancelación");
         }
@@ -688,6 +691,7 @@ public class FrmShipment extends javax.swing.JInternalFrame {
     private void btnDispatchedPackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDispatchedPackActionPerformed
         try {
             this.shipment.dispatchShipment(pack);
+            this.history.addShipment(shipment);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "El paquete debio estar En Almacén, para su Despacho");
         }
@@ -696,6 +700,7 @@ public class FrmShipment extends javax.swing.JInternalFrame {
     private void btnDeliveredPackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveredPackActionPerformed
         try {
             this.shipment.deliverShipment(pack);
+            this.history.addShipment(shipment);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "El paquete debe estar Despachado, para completar la Entrega");
         }

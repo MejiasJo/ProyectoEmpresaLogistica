@@ -84,19 +84,20 @@ public class Shipment {
     
     public void dispatchShipment(Package pack) throws Exception{
         if (pack.getState()== PackageStatus.InWarehouse){
-            pack.setStatus(PackageStatus.Dispatched);
+            this.pack.setStatus(PackageStatus.Dispatched);
         } else {throw new Exception();}
     }
     
     public void deliverShipment(Package pack) throws Exception {
         if (pack.getState() == PackageStatus.Dispatched){
-            pack.setStatus(PackageStatus.Delivered);
+            this.pack.setStatus(PackageStatus.Delivered);
+            setDeliveryDate(LocalDate.now());
         } else {throw new Exception();}
     }
     
     public void cancelShipment(Package pack) throws Exception {
         if (pack.getState() == PackageStatus.InWarehouse){
-            pack.setStatus(PackageStatus.Canceled);
+            this.pack.setStatus(PackageStatus.Canceled);
         } else {throw new Exception();}
     }
 

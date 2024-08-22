@@ -427,7 +427,7 @@ public class frmPackage extends javax.swing.JInternalFrame {
         txtWeight.setText("");
         txtSender.setText("");
         txtAdressee.setText("");
-        btnAgregar.setEnabled(false);
+        this.btnAgregar.setEnabled(false);
 
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -516,6 +516,7 @@ public class frmPackage extends javax.swing.JInternalFrame {
             this.customerIsNull(remitente);
             this.customerIsNull(destinatario);
             btnAgregar.setEnabled(true);
+            this.btnRemitente.setEnabled(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, 
                     "Las casillas Remitente o Destinatario, no deben estar vacias");
