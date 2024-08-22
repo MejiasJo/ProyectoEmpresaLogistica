@@ -4,7 +4,7 @@
  */
 package packages;
 
-import packages.PackageState;
+import packages.PackageStatus;
 import customers.Customer;
 ;
 /**
@@ -18,7 +18,7 @@ public class Package {
     private double weight;
     private Customer sender;
     private Customer addressee;
-    private PackageState status;
+    private PackageStatus status;
 
     public static int getCounter() {
         return counter;
@@ -44,25 +44,12 @@ public class Package {
         return addressee;
     }
 
-    public PackageState getState() {
+    public PackageStatus getState() {
         return status;
     }
 
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    public void setSender(Customer sender) {
-        this.sender = sender;
-    }
-
     public void setStatus(String status) {
-        this.status = PackageState.valueOf(status);
+        this.status = PackageStatus.valueOf(status);
     }
    
     public void setDescription(String description) {
@@ -73,13 +60,18 @@ public class Package {
         this.addressee = addressee;
     }
 
+    public void packegeIsNull() throws Exception{
+        if(this==null)
+            throw new Exception();
+    }
+
     public Package(String description, double weight, Customer sender, Customer addressee) {
         this.code = counter ++;
         this.description = description;
         this.weight = weight;
         this.sender = sender;
         this.addressee = addressee;
-        this.status = PackageState.InWarehouse;
+        this.status = PackageStatus.InWarehouse;
     }
 
     public Package() {
@@ -87,10 +79,8 @@ public class Package {
     }
 
     @Override
-     public String toString() {
-        return "Package" + "code=" + code + ", description=" + description + ", weight=" + weight 
-                + ", sender= (" + sender + "), addressee= (" + addressee + "), state=" + status;
+    public String toString() {
+        return "Package{" + "code=" + code + ", description=" + description + ", weight=" + weight + ", sender=" + sender + ", addressee=" + addressee + ", status=" + status + '}';
     }
-  
 }
     

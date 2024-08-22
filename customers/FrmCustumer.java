@@ -328,6 +328,8 @@ public class FrmCustumer extends javax.swing.JInternalFrame {
             this.txtCorreo.setText("");
 
             custom = null;
+            this.btnEliminar.setEnabled(false);
+            this.btnActualizar.setEnabled(false);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
@@ -343,6 +345,10 @@ public class FrmCustumer extends javax.swing.JInternalFrame {
         custom = this.list.findCustomerById(identificacion);
         custom.setPhone(telefono);
         custom.setEmail(correo);
+        this.list.updateCustomer(custom);
+        
+        this.btnEliminar.setEnabled(false);
+        this.btnActualizar.setEnabled(false);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed

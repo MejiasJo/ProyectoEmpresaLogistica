@@ -25,12 +25,10 @@ public class EmployeeList {
     }
     
     //actualizar
-    public boolean updateEmployee(String id, String newPhone, String newEmail, String newPosition, double newSalary) {
-        Employee employee = findEmployeeById(id);
-        if (employee != null) {
-            employee.setPhone(newPhone);
-            employee.setEmail(newEmail);
-            employee.setPosition(newPosition, newSalary);
+    public boolean updateEmployee(Employee employee) {
+        int index = employees.indexOf(employee);
+        if (index !=-1) {
+            employees.set(index, employee);
             return true;
         }
         return false;
@@ -59,6 +57,26 @@ public class EmployeeList {
     public void listAllEmployees() {
         for (Employee employee : employees) {
             System.out.println(employee);
+        }
+    }
+    
+    public ArrayList<Employee> filteredCustomers(String text) {
+        ArrayList<Employee> filteredCustomers = new ArrayList();
+
+        if (text.equals("")) {
+            for (Employee employee : this.employees) {
+                if (employee != null) {
+                    filteredCustomers.add(employee);
+                }
+            }
+            return filteredCustomers;
+        } else {
+            for (Employee employee : this.employees) {
+                if (employee != null && employee.getId().toLowerCase().contains(text.toLowerCase())) {
+                    filteredCustomers.add(employee);
+                }
+            }
+            return filteredCustomers;
         }
     }
 }

@@ -4,18 +4,30 @@
  */
 package employees;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author zulay
  */
 public class FrmSearchEmployee extends javax.swing.JDialog {
-
+    private Employee employee;
+    private EmployeeList list;
     /**
      * Creates new form FrmEmployee
      */
     public FrmSearchEmployee(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setList(EmployeeList list) {
+        this.list = list;
+        this.cargar();
     }
 
     /**
@@ -30,13 +42,13 @@ public class FrmSearchEmployee extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtIdentificacion = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblAnimales = new javax.swing.JTable();
+        tblEmployees = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btnSearch = new javax.swing.JButton();
-        btnSearch1 = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -53,14 +65,19 @@ public class FrmSearchEmployee extends javax.swing.JDialog {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Identificación");
 
-        jTextField1.setBackground(new java.awt.Color(152, 202, 202));
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
+        txtIdentificacion.setBackground(new java.awt.Color(152, 202, 202));
+        txtIdentificacion.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtIdentificacion.setForeground(new java.awt.Color(0, 0, 0));
+        txtIdentificacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIdentificacionKeyReleased(evt);
+            }
+        });
 
         jScrollPane1.setBackground(new java.awt.Color(217, 246, 248));
 
-        tblAnimales.setBackground(new java.awt.Color(152, 202, 202));
-        tblAnimales.setModel(new javax.swing.table.DefaultTableModel(
+        tblEmployees.setBackground(new java.awt.Color(152, 202, 202));
+        tblEmployees.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -92,8 +109,8 @@ public class FrmSearchEmployee extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        tblAnimales.setSelectionBackground(new java.awt.Color(0, 153, 153));
-        jScrollPane1.setViewportView(tblAnimales);
+        tblEmployees.setSelectionBackground(new java.awt.Color(0, 153, 153));
+        jScrollPane1.setViewportView(tblEmployees);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -106,7 +123,7 @@ public class FrmSearchEmployee extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -122,7 +139,7 @@ public class FrmSearchEmployee extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(29, Short.MAX_VALUE))
@@ -134,28 +151,37 @@ public class FrmSearchEmployee extends javax.swing.JDialog {
 
         btnSearch.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnSearch.setForeground(new java.awt.Color(0, 0, 0));
-        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/Search_64 (2).png"))); // NOI18N
-        btnSearch.setText("Buscar");
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/receipt_add_64.png"))); // NOI18N
+        btnSearch.setText("Agregar");
         btnSearch.setBorderPainted(false);
         btnSearch.setContentAreaFilled(false);
         btnSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnSearch.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/Search_72 (1).png"))); // NOI18N
+        btnSearch.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/receipt_add_64.png"))); // NOI18N
+        btnSearch.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/receipt_add_72.png"))); // NOI18N
         btnSearch.setVerifyInputWhenFocusTarget(false);
+        btnSearch.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        btnSearch1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnSearch1.setForeground(new java.awt.Color(0, 0, 0));
-        btnSearch1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/cancel_64.png"))); // NOI18N
-        btnSearch1.setText("Cancelar");
-        btnSearch1.setBorderPainted(false);
-        btnSearch1.setContentAreaFilled(false);
-        btnSearch1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnSearch1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/cancel_74.png"))); // NOI18N
-        btnSearch1.setVerifyInputWhenFocusTarget(false);
-        btnSearch1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnSearch1.addActionListener(new java.awt.event.ActionListener() {
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearch1ActionPerformed(evt);
+                btnSearchActionPerformed(evt);
+            }
+        });
+
+        btnCancel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnCancel.setForeground(new java.awt.Color(0, 0, 0));
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel_64.png"))); // NOI18N
+        btnCancel.setText("Cancelar");
+        btnCancel.setBorderPainted(false);
+        btnCancel.setContentAreaFilled(false);
+        btnCancel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCancel.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel_64.png"))); // NOI18N
+        btnCancel.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel_72.png"))); // NOI18N
+        btnCancel.setVerifyInputWhenFocusTarget(false);
+        btnCancel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnCancel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
             }
         });
 
@@ -164,18 +190,18 @@ public class FrmSearchEmployee extends javax.swing.JDialog {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(180, 180, 180)
-                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(103, 103, 103)
-                .addComponent(btnSearch1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(223, Short.MAX_VALUE))
+                .addGap(182, 182, 182)
+                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90)
+                .addComponent(btnCancel)
+                .addContainerGap(211, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSearch1)
+                    .addComponent(btnCancel)
                     .addComponent(btnSearch))
                 .addGap(14, 14, 14))
         );
@@ -219,10 +245,39 @@ public class FrmSearchEmployee extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearch1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSearch1ActionPerformed
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        employee = null;
+        this.dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
 
+    private void txtIdentificacionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdentificacionKeyReleased
+        cargar();
+    }//GEN-LAST:event_txtIdentificacionKeyReleased
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        try {
+            String identificacion = String.valueOf(tblEmployees.getValueAt(tblEmployees.getSelectedRow(), 0));
+            this.employee = list.findEmployeeById(identificacion);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            employee = null;
+        }
+        this.dispose();
+    }//GEN-LAST:event_btnSearchActionPerformed
+    
+    private void cargar() {
+        DefaultTableModel model = (DefaultTableModel) tblEmployees.getModel();
+        model.setRowCount(0);
+        for (Employee objeto : list.filteredCustomers(this.txtIdentificacion.getText())) {
+            if (objeto == null) {
+                continue;
+            }
+            Object datos[] = {objeto.getId(), objeto.getName(),
+                objeto.getBirthDate(), objeto.getPhone(), objeto.getEmail(), 
+                    objeto.getPosition(), objeto.getSalary()};
+            model.addRow(datos);
+        }
+        tblEmployees.setModel(model);
+    }
     /**
      * @param args the command line arguments
      */
@@ -267,15 +322,15 @@ public class FrmSearchEmployee extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JButton btnSearch1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTable tblAnimales;
+    private javax.swing.JTable tblEmployees;
+    private javax.swing.JTextField txtIdentificacion;
     // End of variables declaration//GEN-END:variables
 }
