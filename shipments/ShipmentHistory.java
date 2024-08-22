@@ -4,6 +4,7 @@
  */
 package shipments;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -27,6 +28,26 @@ public class ShipmentHistory {
     
     public Shipment searchShipment(int key){
         return history.get(key);
+    }
+    
+    public ArrayList<Shipment> filteredShipment(String text) {
+        ArrayList<Shipment> filteredCustomers = new ArrayList<>();
+
+        if (text.equals("")) {
+            for (Shipment shipment : this.history.values()) {
+                if (shipment != null) {
+                    filteredCustomers.add(shipment);
+                }
+            }
+            return filteredCustomers;
+        } else {
+            for (Shipment shipment : this.history.values()) {
+                if (shipment != null && shipment.getShipmentNumber()== Integer.parseInt(text.toLowerCase())) {
+                    filteredCustomers.add(shipment);
+                }
+            }
+            return filteredCustomers;
+        }
     }
 
     @Override

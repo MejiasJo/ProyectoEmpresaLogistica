@@ -2,33 +2,36 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package employees;
+package shipments;
 
+import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author zulay
+ * @author Johel M
  */
-public class FrmSearchEmployee extends javax.swing.JDialog {
-    private Employee employee;
-    private EmployeeList list;
+public class FrmSearchShipment extends javax.swing.JDialog {
+
+    private Shipment shipment;
+    private ShipmentHistory history;
     /**
-     * Creates new form FrmEmployee
+     * Creates new form FrmSearchShioment
      */
-    public FrmSearchEmployee(java.awt.Frame parent, boolean modal) {
+    public FrmSearchShipment(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public Shipment getShipment() {
+        return shipment;
     }
 
-    public void setList(EmployeeList list) {
-        this.list = list;
-        this.cargar();
+    public void setHistory(ShipmentHistory history) {
+        this.history = history;
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,9 +45,10 @@ public class FrmSearchEmployee extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtIdentificacion = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblEmployees = new javax.swing.JTable();
+        tblShipment = new javax.swing.JTable();
+        txtCodigoEnvio = new javax.swing.JSpinner();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btnSearch = new javax.swing.JButton();
@@ -58,25 +62,25 @@ public class FrmSearchEmployee extends javax.swing.JDialog {
         jLabel6.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Buscar Empleado");
+        jLabel6.setText("Historial de Envios");
 
         jLabel2.setFont(new java.awt.Font("Arial Narrow", 1, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Identificación");
+        jLabel2.setText("Codigo de Envio");
 
-        txtIdentificacion.setBackground(new java.awt.Color(152, 202, 202));
-        txtIdentificacion.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtIdentificacion.setForeground(new java.awt.Color(0, 0, 0));
-        txtIdentificacion.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCodigo.setBackground(new java.awt.Color(152, 202, 202));
+        txtCodigo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtCodigo.setForeground(new java.awt.Color(0, 0, 0));
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtIdentificacionKeyReleased(evt);
+                txtCodigoKeyReleased(evt);
             }
         });
 
         jScrollPane1.setBackground(new java.awt.Color(217, 246, 248));
 
-        tblEmployees.setBackground(new java.awt.Color(152, 202, 202));
-        tblEmployees.setModel(new javax.swing.table.DefaultTableModel(
+        tblShipment.setBackground(new java.awt.Color(152, 202, 202));
+        tblShipment.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -90,11 +94,11 @@ public class FrmSearchEmployee extends javax.swing.JDialog {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Identificacion", "Nombre", "Edad", "Telefono", "Correo", "Puesto ", "Salario"
+                "Codigo de Envio", "Cliente", "Paquete", "Ruta", "Fecha de Envio", "Fecha de Entrega", "Precio"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
@@ -108,26 +112,34 @@ public class FrmSearchEmployee extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        tblEmployees.setSelectionBackground(new java.awt.Color(0, 153, 153));
-        jScrollPane1.setViewportView(tblEmployees);
+        tblShipment.setSelectionBackground(new java.awt.Color(0, 153, 153));
+        jScrollPane1.setViewportView(tblShipment);
+
+        txtCodigoEnvio.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtCodigoEnvio.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                txtCodigoEnvioStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(225, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(208, 208, 208))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCodigoEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(605, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 885, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -138,8 +150,10 @@ public class FrmSearchEmployee extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigoEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(29, Short.MAX_VALUE))
         );
@@ -189,11 +203,11 @@ public class FrmSearchEmployee extends javax.swing.JDialog {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(182, 182, 182)
+                .addGap(303, 303, 303)
                 .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90)
+                .addGap(103, 103, 103)
                 .addComponent(btnCancel)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addContainerGap(257, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,39 +258,42 @@ public class FrmSearchEmployee extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        employee = null;
-        this.dispose();
-    }//GEN-LAST:event_btnCancelActionPerformed
-
-    private void txtIdentificacionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdentificacionKeyReleased
+    private void txtCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyReleased
         cargar();
-    }//GEN-LAST:event_txtIdentificacionKeyReleased
+    }//GEN-LAST:event_txtCodigoKeyReleased
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         try {
-            String identificacion = String.valueOf(tblEmployees.getValueAt(tblEmployees.getSelectedRow(), 0));
-            this.employee = list.findEmployeeById(identificacion);
+            int codigoEnvio = (int) (tblShipment.getValueAt(tblShipment.getSelectedRow(), 0));
+            this.shipment = history.searchShipment(codigoEnvio);
         } catch (ArrayIndexOutOfBoundsException ex) {
-            employee = null;
+            shipment = null;
         }
         this.dispose();
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        shipment = null;
+        this.dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void txtCodigoEnvioStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_txtCodigoEnvioStateChanged
+        cargar();
+    }//GEN-LAST:event_txtCodigoEnvioStateChanged
     
-    private void cargar() {
-        DefaultTableModel model = (DefaultTableModel) tblEmployees.getModel();
+    public void cargar(){
+        DefaultTableModel model = (DefaultTableModel) tblShipment.getModel();
         model.setRowCount(0);
-        for (Employee objeto : list.filteredCustomers(this.txtIdentificacion.getText())) {
-            if (objeto == null) {
-                continue;
-            }
-            Object datos[] = {objeto.getId(), objeto.getName(),
-                objeto.getBirthDate(), objeto.getPhone(), objeto.getEmail(), 
-                    objeto.getPosition(), objeto.getSalary()};
+        for (Iterator<Shipment> it = history.filteredShipment( String.valueOf(this.txtCodigoEnvio.getValue())).iterator(); it.hasNext();) {
+            Shipment objeto = it.next();
+            Object datos[] = {objeto.getShipmentNumber(), objeto.getClient(),
+                objeto.getPack(), objeto.getRoute(), objeto.getShipmentDate(),
+                objeto.getDeliveryDate(), objeto.getPrice()};
             model.addRow(datos);
         }
-        tblEmployees.setModel(model);
+        tblShipment.setModel(model);
     }
+    
     /**
      * @param args the command line arguments
      */
@@ -294,13 +311,13 @@ public class FrmSearchEmployee extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmSearchEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmSearchShipment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmSearchEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmSearchShipment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmSearchEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmSearchShipment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmSearchEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmSearchShipment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -308,7 +325,7 @@ public class FrmSearchEmployee extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrmSearchEmployee dialog = new FrmSearchEmployee(new javax.swing.JFrame(), true);
+                FrmSearchShipment dialog = new FrmSearchShipment(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -329,7 +346,8 @@ public class FrmSearchEmployee extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblEmployees;
-    private javax.swing.JTextField txtIdentificacion;
+    private javax.swing.JTable tblShipment;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JSpinner txtCodigoEnvio;
     // End of variables declaration//GEN-END:variables
 }

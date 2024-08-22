@@ -6,6 +6,7 @@ package employees;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 
@@ -14,10 +15,12 @@ import javax.swing.JOptionPane;
  * @author zulay
  */
 public class FrmEmployee extends javax.swing.JInternalFrame {
+
     private Employee employ;
     private EmployeeList list;
-    
-    HashMap<String,Double> puestoSalario;
+
+    HashMap<String, Double> puestoSalario;
+
     /**
      * Creates new form FrmEmployee
      */
@@ -73,6 +76,7 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
         txtPuesto = new javax.swing.JComboBox<>();
         btnNew = new javax.swing.JButton();
 
+        setClosable(true);
         setTitle("Administar Empleados");
 
         jPanel1.setBackground(new java.awt.Color(217, 246, 248));
@@ -81,7 +85,6 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/shipping_icon_177395.png"))); // NOI18N
         jLabel6.setText("Registro ");
 
         jLabel2.setFont(new java.awt.Font("Arial Narrow", 1, 20)); // NOI18N
@@ -140,15 +143,12 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
 
         btnAdd.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         btnAdd.setForeground(new java.awt.Color(0, 0, 0));
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserAdd_64.png"))); // NOI18N
         btnAdd.setText("Agregar");
         btnAdd.setToolTipText("");
         btnAdd.setBorderPainted(false);
         btnAdd.setContentAreaFilled(false);
         btnAdd.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAdd.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserAdd_64.png"))); // NOI18N
-        btnAdd.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserAdd_72.png"))); // NOI18N
         btnAdd.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -159,14 +159,11 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
 
         btnDelete.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(0, 0, 0));
-        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserRemove_64.png"))); // NOI18N
         btnDelete.setText("Eliminar");
         btnDelete.setBorderPainted(false);
         btnDelete.setContentAreaFilled(false);
         btnDelete.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnDelete.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserRemove_64.png"))); // NOI18N
-        btnDelete.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserRemove_72.png"))); // NOI18N
         btnDelete.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -177,12 +174,10 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
 
         btnUpDate.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnUpDate.setForeground(new java.awt.Color(0, 0, 0));
-        btnUpDate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/UserEdit_64.png"))); // NOI18N
         btnUpDate.setText("Actualizar");
         btnUpDate.setBorderPainted(false);
         btnUpDate.setContentAreaFilled(false);
         btnUpDate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnUpDate.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/UserEdit_72.png"))); // NOI18N
         btnUpDate.setVerifyInputWhenFocusTarget(false);
         btnUpDate.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnUpDate.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -194,12 +189,10 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
 
         btnSearch.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnSearch.setForeground(new java.awt.Color(0, 0, 0));
-        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/Search_64 (2).png"))); // NOI18N
         btnSearch.setText("Buscar");
         btnSearch.setBorderPainted(false);
         btnSearch.setContentAreaFilled(false);
         btnSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnSearch.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/Search_72 (1).png"))); // NOI18N
         btnSearch.setVerifyInputWhenFocusTarget(false);
         btnSearch.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -216,12 +209,10 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
 
         btnNew.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnNew.setForeground(new java.awt.Color(0, 0, 0));
-        btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/Search_64 (2).png"))); // NOI18N
         btnNew.setText("Nuevo");
         btnNew.setBorderPainted(false);
         btnNew.setContentAreaFilled(false);
         btnNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnNew.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/Search_72 (1).png"))); // NOI18N
         btnNew.setVerifyInputWhenFocusTarget(false);
         btnNew.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -277,7 +268,7 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
                         .addComponent(btnUpDate)
                         .addGap(64, 64, 64)
                         .addComponent(btnSearch)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -349,28 +340,33 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        this.txtIdentificacion.setEditable(false);
-        this.txtNombre.setEditable(false);
-        this.txtFechaNacimiento.setEditable(false);
-        this.txtTelefono.setEditable(false);
-        this.txtCorreo.setEditable(false);
 
-        String identificacion = this.txtIdentificacion.getText();
-        String nombre = this.txtNombre.getText();
-        LocalDate fecha = LocalDate.parse(this.txtFechaNacimiento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        String telefono = this.txtTelefono.getText();
-        String correo = this.txtCorreo.getText();
-        String puesto = String.valueOf(this.txtPuesto.getSelectedItem());
-        double salario = verificarPuestoSalario();
+        try {
+            LocalDate fecha = LocalDate.parse(this.txtFechaNacimiento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            String identificacion = this.txtIdentificacion.getText();
+            String nombre = this.txtNombre.getText();
+            String telefono = this.txtTelefono.getText();
+            String correo = this.txtCorreo.getText();
+            String puesto = String.valueOf(this.txtPuesto.getSelectedItem());
+            double salario = verificarPuestoSalario();
 
-        employ = new Employee(puesto,salario,identificacion, nombre, fecha, telefono, correo);
-        list.addEmployee(employ);
+            this.txtIdentificacion.setEditable(false);
+            this.txtNombre.setEditable(false);
+            this.txtFechaNacimiento.setEditable(false);
+            this.txtTelefono.setEditable(false);
+            this.txtCorreo.setEditable(false);
 
-        this.btnAdd.setEnabled(false);
+            employ = new Employee(puesto, salario, identificacion, nombre, fecha, telefono, correo);
+            list.addEmployee(employ);
+
+            this.btnAdd.setEnabled(false);
+        } catch (DateTimeParseException ex) {
+            JOptionPane.showMessageDialog(this, "No ingreso la Fecha de Nacimiento");
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        
+
         try {
             this.list.removeEmployee(employ.getId());
 
@@ -386,12 +382,12 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
-        
-        
+
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpDateActionPerformed
-        
+
         String identificacion = this.txtIdentificacion.getText();
         String telefono = this.txtTelefono.getText();
         String correo = this.txtCorreo.getText();
@@ -403,10 +399,10 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
         employ.setEmail(correo);
         employ.setPosition(puesto, salario);
         this.list.updateEmployee(employ);
-        
+
         this.btnDelete.setEnabled(false);
         this.btnUpDate.setEnabled(false);
-        
+
     }//GEN-LAST:event_btnUpDateActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
@@ -456,22 +452,22 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
         this.btnUpDate.setEnabled(false);
     }//GEN-LAST:event_btnNewActionPerformed
 
-    public void puestoSalario(){
+    public void puestoSalario() {
         puestoSalario = new HashMap<>();
-        
+
         puestoSalario.put("Agente de Ventas", 400000.00);
-        puestoSalario.put("Encargado de Inventario", 350000.00 );
+        puestoSalario.put("Encargado de Inventario", 350000.00);
         puestoSalario.put("Gerente de Sucursal", 700000.00);
         puestoSalario.put("Recepcionista", 425000.00);
         puestoSalario.put("Conductor de Reparto", 375000.00);
         puestoSalario.put("Técnico en Mantenimiento de Flota", 525000.00);
     }
-    
-    public double verificarPuestoSalario(){
+
+    public double verificarPuestoSalario() {
         double salario = puestoSalario.get(String.valueOf(this.txtPuesto.getSelectedItem()));
         return salario;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;

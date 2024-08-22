@@ -48,8 +48,8 @@ public class Package {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = PackageStatus.valueOf(status);
+    public void setStatus(PackageStatus status) {
+        this.status = status;
     }
    
     public void setDescription(String description) {

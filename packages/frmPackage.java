@@ -27,26 +27,29 @@ public class frmPackage extends javax.swing.JInternalFrame {
     Customer remitente;
     Customer destinatario;
     Package pack;
-    CustomerList list;
+    private CustomerList list;
     DefaultTableModel tabla;
-    PackagesList globalPackage;
+    private PackagesList globalPackage;
 
     /**
      * Creates new form frmPackages
      */
-    public frmPackage(PackagesList administrationPackages) {
+    public frmPackage() {
         initComponents();
 
         tabla = (DefaultTableModel) tblTabla.getModel();
-        globalPackage = administrationPackages;
         this.txtCode.setText(String.valueOf(count));
-        cargarTabla(); //Corregir
+//        cargarTabla(); //Corregir
     }
 
     public void setList(CustomerList list) {
         this.list = list;
     }
 
+    public void setGlobalPackage(PackagesList globalPackage) {
+        this.globalPackage = globalPackage;
+    }
+    
     private void cargarTabla() {
         for (int i = tabla.getRowCount() - 1; i >= 0; i--) {
             tabla.removeRow(i);
@@ -429,21 +432,20 @@ public class frmPackage extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        Package paquete = globalPackage.SearchPackage(Integer.parseInt(txtCode.getText()));
-
+        
+        try{Package paquete = globalPackage.SearchPackage(Integer.parseInt(txtCode.getText()));
         if (!txtDescription.getText().isEmpty()) {
             paquete.setDescription(txtDescription.getText());
         }
-
         if (!txtAdressee.getText().isEmpty()) {
-
             this.txtAdressee.setText(destinatario.getName());
             paquete.setAddressee(destinatario);
         }
-
         globalPackage.UpdatePackage(paquete.getCode(), paquete);
-
         cargarTabla();
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(this, "No se encontro el paquete");
+        }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -515,7 +517,8 @@ public class frmPackage extends javax.swing.JInternalFrame {
             this.customerIsNull(destinatario);
             btnAgregar.setEnabled(true);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "No se puede realizar auto envios");
+            JOptionPane.showMessageDialog(this, 
+                    "Las casillas Remitente o Destinatario, no deben estar vacias");
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 

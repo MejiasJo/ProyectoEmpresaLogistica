@@ -20,7 +20,7 @@ public class Shipment {
     private int shipmentNumber;
     private Customer client;
     private Package pack;
-    private Customer route;
+    private Route route;
     private LocalDate shipmentDate;
     private LocalDate deliveryDate;
     private double price;
@@ -82,19 +82,22 @@ public class Shipment {
         return cost;
     }
     
-    public void dispatchShipment() {
-        if (pack.getStatus() == PackageStatus.InWarehouse)
+    public void dispatchShipment(Package pack) throws Exception{
+        if (pack.getState()== PackageStatus.InWarehouse){
             pack.setStatus(PackageStatus.Dispatched);
+        } else {throw new Exception();}
     }
     
-    public void deliverShipment() {
-        if (pack.getStatus() == PackageStatus.Dispatched)
+    public void deliverShipment(Package pack) throws Exception {
+        if (pack.getState() == PackageStatus.Dispatched){
             pack.setStatus(PackageStatus.Delivered);
+        } else {throw new Exception();}
     }
     
-    public void cancelShipment() {
-        if (pack.getStatus() == PackageStatus.InWarehouse)
+    public void cancelShipment(Package pack) throws Exception {
+        if (pack.getState() == PackageStatus.InWarehouse){
             pack.setStatus(PackageStatus.Canceled);
+        } else {throw new Exception();}
     }
 
     @Override

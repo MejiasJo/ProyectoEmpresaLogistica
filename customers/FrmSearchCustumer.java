@@ -74,7 +74,6 @@ public class FrmSearchCustumer extends javax.swing.JDialog {
         jLabel6.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/Search_64 (2).png"))); // NOI18N
         jLabel6.setText("Buscar Cliente");
 
         jScrollPane1.setBackground(new java.awt.Color(217, 246, 248));

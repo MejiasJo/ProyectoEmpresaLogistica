@@ -6,6 +6,7 @@ package customers;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import javax.swing.JOptionPane;
 
 /**
@@ -59,6 +60,7 @@ public class FrmCustumer extends javax.swing.JInternalFrame {
         btnActualizar = new javax.swing.JButton();
         btnNew = new javax.swing.JButton();
 
+        setClosable(true);
         setTitle("Registro de Clientes");
 
         PanelCliente.setBackground(new java.awt.Color(217, 246, 248));
@@ -88,7 +90,6 @@ public class FrmCustumer extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/shipping_icon_177395.png"))); // NOI18N
         jLabel6.setText("Registro ");
 
         txtIdentificacion.setBackground(new java.awt.Color(152, 202, 202));
@@ -114,15 +115,12 @@ public class FrmCustumer extends javax.swing.JInternalFrame {
 
         btnAgregar.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         btnAgregar.setForeground(new java.awt.Color(0, 0, 0));
-        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserAdd_64.png"))); // NOI18N
         btnAgregar.setText("Agregar");
         btnAgregar.setToolTipText("");
         btnAgregar.setBorderPainted(false);
         btnAgregar.setContentAreaFilled(false);
         btnAgregar.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         btnAgregar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAgregar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserAdd_64.png"))); // NOI18N
-        btnAgregar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserAdd_72.png"))); // NOI18N
         btnAgregar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnAgregar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -133,15 +131,12 @@ public class FrmCustumer extends javax.swing.JInternalFrame {
 
         btnEliminar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(0, 0, 0));
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserRemove_64.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorderPainted(false);
         btnEliminar.setContentAreaFilled(false);
         btnEliminar.setEnabled(false);
         btnEliminar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnEliminar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserRemove_64.png"))); // NOI18N
-        btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserRemove_72.png"))); // NOI18N
         btnEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,13 +146,10 @@ public class FrmCustumer extends javax.swing.JInternalFrame {
 
         btnBuscar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnBuscar.setForeground(new java.awt.Color(0, 0, 0));
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Search_64 (2).png"))); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.setBorderPainted(false);
         btnBuscar.setContentAreaFilled(false);
         btnBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnBuscar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Search_64 (2).png"))); // NOI18N
-        btnBuscar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Search_72 (1).png"))); // NOI18N
         btnBuscar.setVerifyInputWhenFocusTarget(false);
         btnBuscar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -168,14 +160,11 @@ public class FrmCustumer extends javax.swing.JInternalFrame {
 
         btnActualizar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(0, 0, 0));
-        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserEdit_64.png"))); // NOI18N
         btnActualizar.setText("Actualizar");
         btnActualizar.setBorderPainted(false);
         btnActualizar.setContentAreaFilled(false);
         btnActualizar.setEnabled(false);
         btnActualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnActualizar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserEdit_64.png"))); // NOI18N
-        btnActualizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserEdit_72.png"))); // NOI18N
         btnActualizar.setVerifyInputWhenFocusTarget(false);
         btnActualizar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -186,15 +175,12 @@ public class FrmCustumer extends javax.swing.JInternalFrame {
 
         btnNew.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         btnNew.setForeground(new java.awt.Color(0, 0, 0));
-        btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/new_receipt_64.png"))); // NOI18N
         btnNew.setText("Nuevo");
         btnNew.setToolTipText("");
         btnNew.setBorderPainted(false);
         btnNew.setContentAreaFilled(false);
         btnNew.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         btnNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnNew.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/new_receipt_64.png"))); // NOI18N
-        btnNew.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/new_receipt_72.png"))); // NOI18N
         btnNew.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnNew.addActionListener(new java.awt.event.ActionListener() {
@@ -298,22 +284,27 @@ public class FrmCustumer extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        this.txtIdentificacion.setEditable(false);
-        this.txtNombre.setEditable(false);
-        this.txtFechaNacimiento.setEditable(false);
-        this.txtTelefono.setEditable(false);
-        this.txtCorreo.setEditable(false);
 
-        String identificacion = this.txtIdentificacion.getText();
-        String nombre = this.txtNombre.getText();
-        LocalDate fecha = LocalDate.parse(this.txtFechaNacimiento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        String telefono = this.txtTelefono.getText();
-        String correo = this.txtCorreo.getText();
+        try {
+            LocalDate fecha = LocalDate.parse(this.txtFechaNacimiento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            String identificacion = this.txtIdentificacion.getText();
+            String nombre = this.txtNombre.getText();
+            String telefono = this.txtTelefono.getText();
+            String correo = this.txtCorreo.getText();
 
-        custom = new Customer(identificacion, nombre, fecha, telefono, correo);
-        list.addCustomer(custom);
+            this.txtIdentificacion.setEditable(false);
+            this.txtNombre.setEditable(false);
+            this.txtFechaNacimiento.setEditable(false);
+            this.txtTelefono.setEditable(false);
+            this.txtCorreo.setEditable(false);
 
-        this.btnAgregar.setEnabled(false);
+            custom = new Customer(identificacion, nombre, fecha, telefono, correo);
+            list.addCustomer(custom);
+
+            this.btnAgregar.setEnabled(false);
+        } catch (DateTimeParseException ex) {
+            JOptionPane.showMessageDialog(this, "No ingreso la Fecha de Nacimiento");
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -346,7 +337,7 @@ public class FrmCustumer extends javax.swing.JInternalFrame {
         custom.setPhone(telefono);
         custom.setEmail(correo);
         this.list.updateCustomer(custom);
-        
+
         this.btnEliminar.setEnabled(false);
         this.btnActualizar.setEnabled(false);
     }//GEN-LAST:event_btnActualizarActionPerformed
