@@ -60,14 +60,11 @@ public class Package {
         this.status = state;
     }
     
-     
-      
     public void packegeIsNull() throws Exception{
         if(this==null)
             throw new Exception();
     }
 
-   
     public Package(String description, double weight, Customer sender, Customer addressee) {
         this.code = counter++;
         this.description = description;
