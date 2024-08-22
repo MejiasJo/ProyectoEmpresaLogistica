@@ -47,15 +47,15 @@ public class FrmRoute extends javax.swing.JInternalFrame {
     public FrmRoute() {
         initComponents();
         this.setLocale(null);
-        this.TxTCode.setText(String.valueOf(count));
+        this.TxTCode.setText(String.valueOf(count));  
     }
 
-    public void destino() {
+   public void destino() {
         String[] descriptionsArray = TxTDescripList.getText().split(",");
         for (String destino : descriptionsArray) {
             rout.addDestiny(destino);
         }
-    }
+   }
 
     public void comprovacionDesti() throws Exception {
         String text = "Separe los destinos con  ','";
@@ -410,7 +410,6 @@ public class FrmRoute extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
-
 
     }//GEN-LAST:event_btnDeleteActionPerformed
 
