@@ -90,7 +90,8 @@ public class FrmCustumer extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Registro ");
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Magnifier_64.png"))); // NOI18N
+        jLabel6.setText("Registro Clientes");
 
         txtIdentificacion.setBackground(new java.awt.Color(152, 202, 202));
         txtIdentificacion.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -115,6 +116,7 @@ public class FrmCustumer extends javax.swing.JInternalFrame {
 
         btnAgregar.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         btnAgregar.setForeground(new java.awt.Color(0, 0, 0));
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserAdd_64.png"))); // NOI18N
         btnAgregar.setText("Agregar");
         btnAgregar.setToolTipText("");
         btnAgregar.setBorderPainted(false);
@@ -131,6 +133,7 @@ public class FrmCustumer extends javax.swing.JInternalFrame {
 
         btnEliminar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(0, 0, 0));
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserRemove_64.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorderPainted(false);
         btnEliminar.setContentAreaFilled(false);
@@ -146,6 +149,7 @@ public class FrmCustumer extends javax.swing.JInternalFrame {
 
         btnBuscar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Search_64 (2).png"))); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.setBorderPainted(false);
         btnBuscar.setContentAreaFilled(false);
@@ -160,6 +164,7 @@ public class FrmCustumer extends javax.swing.JInternalFrame {
 
         btnActualizar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(0, 0, 0));
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserEdit_64.png"))); // NOI18N
         btnActualizar.setText("Actualizar");
         btnActualizar.setBorderPainted(false);
         btnActualizar.setContentAreaFilled(false);
@@ -175,6 +180,7 @@ public class FrmCustumer extends javax.swing.JInternalFrame {
 
         btnNew.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         btnNew.setForeground(new java.awt.Color(0, 0, 0));
+        btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/new_receipt_64.png"))); // NOI18N
         btnNew.setText("Nuevo");
         btnNew.setToolTipText("");
         btnNew.setBorderPainted(false);
@@ -198,14 +204,14 @@ public class FrmCustumer extends javax.swing.JInternalFrame {
                 .addGroup(PanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelClienteLayout.createSequentialGroup()
                         .addComponent(btnNew)
-                        .addGap(30, 30, 30)
+                        .addGap(45, 45, 45)
                         .addComponent(btnAgregar))
                     .addGroup(PanelClienteLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(101, 101, 101)
                         .addGroup(PanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(PanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(txtIdentificacion, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                         .addComponent(txtFechaNacimiento))
@@ -219,30 +225,25 @@ public class FrmCustumer extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel4)
                                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(37, 37, 37)
                                 .addGroup(PanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(PanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel5)
+                                        .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(PanelClienteLayout.createSequentialGroup()
-                                        .addGap(37, 37, 37)
-                                        .addGroup(PanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelClienteLayout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
                                         .addComponent(btnActualizar)
-                                        .addGap(18, 18, 18)
+                                        .addGap(56, 56, 56)
                                         .addComponent(btnBuscar)))))))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
         PanelClienteLayout.setVerticalGroup(
             PanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelClienteLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(PanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnNew)
                     .addGroup(PanelClienteLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnNew))
-                    .addGroup(PanelClienteLayout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addGroup(PanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
@@ -277,7 +278,9 @@ public class FrmCustumer extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

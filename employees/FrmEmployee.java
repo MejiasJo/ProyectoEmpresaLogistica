@@ -85,7 +85,8 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Registro ");
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Magnifier_64.png"))); // NOI18N
+        jLabel6.setText("Registro Empleados ");
 
         jLabel2.setFont(new java.awt.Font("Arial Narrow", 1, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -143,6 +144,7 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
 
         btnAdd.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         btnAdd.setForeground(new java.awt.Color(0, 0, 0));
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserAdd_64.png"))); // NOI18N
         btnAdd.setText("Agregar");
         btnAdd.setToolTipText("");
         btnAdd.setBorderPainted(false);
@@ -159,6 +161,7 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
 
         btnDelete.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(0, 0, 0));
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserRemove_64.png"))); // NOI18N
         btnDelete.setText("Eliminar");
         btnDelete.setBorderPainted(false);
         btnDelete.setContentAreaFilled(false);
@@ -174,6 +177,7 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
 
         btnUpDate.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnUpDate.setForeground(new java.awt.Color(0, 0, 0));
+        btnUpDate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserEdit_64.png"))); // NOI18N
         btnUpDate.setText("Actualizar");
         btnUpDate.setBorderPainted(false);
         btnUpDate.setContentAreaFilled(false);
@@ -189,6 +193,7 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
 
         btnSearch.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnSearch.setForeground(new java.awt.Color(0, 0, 0));
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Search_64 (2).png"))); // NOI18N
         btnSearch.setText("Buscar");
         btnSearch.setBorderPainted(false);
         btnSearch.setContentAreaFilled(false);
@@ -209,6 +214,7 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
 
         btnNew.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnNew.setForeground(new java.awt.Color(0, 0, 0));
+        btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/new_receipt_64.png"))); // NOI18N
         btnNew.setText("Nuevo");
         btnNew.setBorderPainted(false);
         btnNew.setContentAreaFilled(false);
@@ -246,29 +252,36 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
                             .addGap(222, 222, 222)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(txtPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(54, 54, 54)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(btnNew)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAdd)
-                        .addGap(34, 34, 34)
-                        .addComponent(btnDelete)
-                        .addGap(35, 35, 35)
-                        .addComponent(btnUpDate)
-                        .addGap(64, 64, 64)
-                        .addComponent(btnSearch)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(txtPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(54, 54, 54)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(btnNew)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAdd)
+                                .addGap(55, 55, 55)
+                                .addComponent(btnDelete)
+                                .addGap(63, 63, 63)
+                                .addComponent(btnUpDate)
+                                .addGap(58, 58, 58)))
+                        .addComponent(btnSearch)
+                        .addGap(21, 21, 21)))
+                .addContainerGap(38, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(197, 197, 197)
+                .addComponent(jLabel6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -280,9 +293,9 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(23, 23, 23)
+                .addComponent(jLabel6)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
