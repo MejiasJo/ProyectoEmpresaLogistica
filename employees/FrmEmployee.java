@@ -4,17 +4,42 @@
  */
 package employees;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author zulay
  */
 public class FrmEmployee extends javax.swing.JInternalFrame {
-
+    private Employee employ;
+    private EmployeeList list;
+    
+    HashMap<String,Double> puestoSalario;
     /**
      * Creates new form FrmEmployee
      */
     public FrmEmployee() {
         initComponents();
+        puestoSalario();
+    }
+
+    public Employee getEmplo() {
+        return employ;
+    }
+
+    public void setEmplo(Employee emplo) {
+        this.employ = emplo;
+    }
+
+    public EmployeeList getList() {
+        return list;
+    }
+
+    public void setList(EmployeeList list) {
+        this.list = list;
     }
 
     /**
@@ -30,22 +55,23 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtIdentificacion = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        txtFechaNacimiento = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        txtSalario = new javax.swing.JTextField();
+        btnAdd = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnUpDate = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
+        txtPuesto = new javax.swing.JComboBox<>();
+        btnNew = new javax.swing.JButton();
 
         setTitle("Administar Empleados");
 
@@ -66,43 +92,38 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nombre");
 
-        jTextField1.setBackground(new java.awt.Color(152, 202, 202));
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
+        txtIdentificacion.setBackground(new java.awt.Color(152, 202, 202));
+        txtIdentificacion.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtIdentificacion.setForeground(new java.awt.Color(0, 0, 0));
 
-        jTextField2.setBackground(new java.awt.Color(152, 202, 202));
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
+        txtNombre.setBackground(new java.awt.Color(152, 202, 202));
+        txtNombre.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel3.setFont(new java.awt.Font("Arial Narrow", 1, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Fecha Nacimiento ");
 
-        jFormattedTextField1.setBackground(new java.awt.Color(152, 202, 202));
-        jFormattedTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d/M/yyyy"))));
-        jFormattedTextField1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtFechaNacimiento.setBackground(new java.awt.Color(152, 202, 202));
+        txtFechaNacimiento.setForeground(new java.awt.Color(0, 0, 0));
+        txtFechaNacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d/M/yyyy"))));
+        txtFechaNacimiento.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Arial Narrow", 1, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Telefono");
 
-        jTextField4.setBackground(new java.awt.Color(152, 202, 202));
-        jTextField4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
+        txtTelefono.setBackground(new java.awt.Color(152, 202, 202));
+        txtTelefono.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtTelefono.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel5.setFont(new java.awt.Font("Arial Narrow", 1, 20)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Correo ");
 
-        jTextField5.setBackground(new java.awt.Color(152, 202, 202));
-        jTextField5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(0, 0, 0));
+        txtCorreo.setBackground(new java.awt.Color(152, 202, 202));
+        txtCorreo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtCorreo.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel7.setFont(new java.awt.Font("Arial Narrow", 1, 20)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
@@ -112,67 +133,101 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Puesto ");
 
-        jTextField6.setBackground(new java.awt.Color(152, 202, 202));
-        jTextField6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        txtSalario.setEditable(false);
+        txtSalario.setBackground(new java.awt.Color(152, 202, 202));
+        txtSalario.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtSalario.setForeground(new java.awt.Color(0, 0, 0));
+
+        btnAdd.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(0, 0, 0));
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserAdd_64.png"))); // NOI18N
+        btnAdd.setText("Agregar");
+        btnAdd.setToolTipText("");
+        btnAdd.setBorderPainted(false);
+        btnAdd.setContentAreaFilled(false);
+        btnAdd.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdd.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserAdd_64.png"))); // NOI18N
+        btnAdd.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserAdd_72.png"))); // NOI18N
+        btnAdd.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/UserAdd_64.png"))); // NOI18N
-        jButton1.setText("Agregar");
-        jButton1.setToolTipText("");
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/UserAdd_72.png"))); // NOI18N
-        jButton1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/UserRemove_64.png"))); // NOI18N
-        jButton2.setText("Eliminar");
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        jButton4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 0, 0));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/UserEdit_64.png"))); // NOI18N
-        jButton4.setText("Actualizar");
-        jButton4.setBorderPainted(false);
-        jButton4.setContentAreaFilled(false);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/UserEdit_72.png"))); // NOI18N
-        jButton4.setVerifyInputWhenFocusTarget(false);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        jButton3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/Search_64 (2).png"))); // NOI18N
-        jButton3.setText("Buscar");
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/Search_72 (1).png"))); // NOI18N
-        jButton3.setVerifyInputWhenFocusTarget(false);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        jComboBox1.setBackground(new java.awt.Color(152, 202, 202));
-        jComboBox1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agente de Ventas", "Encargado de Inventario", "Gerente de Sucursal", "Recepcionista", "Conductor de Reparto", "Técnico en Mantenimiento de Flota", " " }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(0, 0, 0));
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserRemove_64.png"))); // NOI18N
+        btnDelete.setText("Eliminar");
+        btnDelete.setBorderPainted(false);
+        btnDelete.setContentAreaFilled(false);
+        btnDelete.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDelete.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserRemove_64.png"))); // NOI18N
+        btnDelete.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/UserRemove_72.png"))); // NOI18N
+        btnDelete.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        btnUpDate.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnUpDate.setForeground(new java.awt.Color(0, 0, 0));
+        btnUpDate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/UserEdit_64.png"))); // NOI18N
+        btnUpDate.setText("Actualizar");
+        btnUpDate.setBorderPainted(false);
+        btnUpDate.setContentAreaFilled(false);
+        btnUpDate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnUpDate.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/UserEdit_72.png"))); // NOI18N
+        btnUpDate.setVerifyInputWhenFocusTarget(false);
+        btnUpDate.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnUpDate.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnUpDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpDateActionPerformed(evt);
+            }
+        });
+
+        btnSearch.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnSearch.setForeground(new java.awt.Color(0, 0, 0));
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/Search_64 (2).png"))); // NOI18N
+        btnSearch.setText("Buscar");
+        btnSearch.setBorderPainted(false);
+        btnSearch.setContentAreaFilled(false);
+        btnSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSearch.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/Search_72 (1).png"))); // NOI18N
+        btnSearch.setVerifyInputWhenFocusTarget(false);
+        btnSearch.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+
+        txtPuesto.setBackground(new java.awt.Color(152, 202, 202));
+        txtPuesto.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        txtPuesto.setForeground(new java.awt.Color(0, 0, 0));
+        txtPuesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agente de Ventas", "Encargado de Inventario", "Gerente de Sucursal", "Recepcionista", "Conductor de Reparto", "Técnico en Mantenimiento de Flota", "" }));
+
+        btnNew.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnNew.setForeground(new java.awt.Color(0, 0, 0));
+        btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/Search_64 (2).png"))); // NOI18N
+        btnNew.setText("Nuevo");
+        btnNew.setBorderPainted(false);
+        btnNew.setContentAreaFilled(false);
+        btnNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnNew.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Botons_ZU/Search_72 (1).png"))); // NOI18N
+        btnNew.setVerifyInputWhenFocusTarget(false);
+        btnNew.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewActionPerformed(evt);
             }
         });
 
@@ -187,46 +242,48 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
                             .addContainerGap()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3)
-                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(61, 61, 61)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel4)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel5)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(222, 222, 222)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(54, 54, 54)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jButton1)
-                        .addGap(65, 65, 65)
-                        .addComponent(jButton2)
-                        .addGap(76, 76, 76)
-                        .addComponent(jButton4)
+                        .addGap(40, 40, 40)
+                        .addComponent(btnNew)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAdd)
+                        .addGap(34, 34, 34)
+                        .addComponent(btnDelete)
+                        .addGap(35, 35, 35)
+                        .addComponent(btnUpDate)
                         .addGap(64, 64, 64)
-                        .addComponent(jButton3)))
+                        .addComponent(btnSearch)))
                 .addContainerGap(22, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel2)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(542, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
@@ -237,7 +294,7 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
                 .addGap(38, 38, 38)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -246,33 +303,34 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                    .addComponent(btnUpDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnNew, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(113, 113, 113)
                     .addComponent(jLabel2)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(384, Short.MAX_VALUE)))
         );
 
@@ -290,26 +348,136 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        this.txtIdentificacion.setEditable(false);
+        this.txtNombre.setEditable(false);
+        this.txtFechaNacimiento.setEditable(false);
+        this.txtTelefono.setEditable(false);
+        this.txtCorreo.setEditable(false);
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+        String identificacion = this.txtIdentificacion.getText();
+        String nombre = this.txtNombre.getText();
+        LocalDate fecha = LocalDate.parse(this.txtFechaNacimiento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        String telefono = this.txtTelefono.getText();
+        String correo = this.txtCorreo.getText();
+        String puesto = String.valueOf(this.txtPuesto.getSelectedItem());
+        double salario = verificarPuestoSalario();
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+        employ = new Employee(puesto,salario,identificacion, nombre, fecha, telefono, correo);
+        list.addEmployee(employ);
 
+        this.btnAdd.setEnabled(false);
+    }//GEN-LAST:event_btnAddActionPerformed
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        
+        try {
+            this.list.removeEmployee(employ.getId());
+
+            this.txtIdentificacion.setText("");
+            this.txtNombre.setText("");
+            this.txtFechaNacimiento.setText("");
+            this.txtTelefono.setText("");
+            this.txtCorreo.setText("");
+
+            employ = null;
+            this.btnDelete.setEnabled(false);
+            this.btnUpDate.setEnabled(false);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex);
+        }
+        
+        
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpDateActionPerformed
+        
+        String identificacion = this.txtIdentificacion.getText();
+        String telefono = this.txtTelefono.getText();
+        String correo = this.txtCorreo.getText();
+        String puesto = String.valueOf(this.txtPuesto.getSelectedItem());
+        double salario = verificarPuestoSalario();
+
+        employ = this.list.findEmployeeById(identificacion);
+        employ.setPhone(telefono);
+        employ.setEmail(correo);
+        employ.setPosition(puesto, salario);
+        this.list.updateEmployee(employ);
+        
+        this.btnDelete.setEnabled(false);
+        this.btnUpDate.setEnabled(false);
+        
+    }//GEN-LAST:event_btnUpDateActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        FrmSearchEmployee frm = new FrmSearchEmployee(null, true);
+        frm.setList(list);
+        frm.setLocationRelativeTo(null);
+        frm.setVisible(true);
+        this.employ = frm.getEmployee();
+        if (employ != null) {
+            this.txtFechaNacimiento.setText(employ.getBirthDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+
+            this.txtFechaNacimiento.setText(employ.getBirthDate().toString());
+            this.txtIdentificacion.setText(employ.getId());
+            this.txtNombre.setText(employ.getName());
+            this.txtTelefono.setText(employ.getPhone());
+            this.txtCorreo.setText(employ.getEmail());
+            this.txtPuesto.setSelectedItem(employ.getPosition());
+            this.txtSalario.setText(String.valueOf(this.verificarPuestoSalario()));
+
+            this.txtIdentificacion.setEditable(false);
+            this.txtNombre.setEditable(false);
+            this.txtFechaNacimiento.setEditable(false);
+            this.txtTelefono.setEditable(true);
+            this.txtCorreo.setEditable(true);
+
+            this.btnUpDate.setEnabled(true);
+            this.btnDelete.setEnabled(true);
+        }
+        this.btnAdd.setEnabled(false);
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
+        this.txtIdentificacion.setEditable(true);
+        this.txtNombre.setEditable(true);
+        this.txtFechaNacimiento.setEditable(true);
+        this.txtTelefono.setEditable(true);
+        this.txtCorreo.setEditable(true);
+
+        this.txtIdentificacion.setText("");
+        this.txtNombre.setText("");
+        this.txtFechaNacimiento.setText("");
+        this.txtTelefono.setText("");
+        this.txtCorreo.setText("");
+
+        this.btnAdd.setEnabled(true);
+        this.btnDelete.setEnabled(false);
+        this.btnUpDate.setEnabled(false);
+    }//GEN-LAST:event_btnNewActionPerformed
+
+    public void puestoSalario(){
+        puestoSalario = new HashMap<>();
+        
+        puestoSalario.put("Agente de Ventas", 400000.00);
+        puestoSalario.put("Encargado de Inventario", 350000.00 );
+        puestoSalario.put("Gerente de Sucursal", 700000.00);
+        puestoSalario.put("Recepcionista", 425000.00);
+        puestoSalario.put("Conductor de Reparto", 375000.00);
+        puestoSalario.put("Técnico en Mantenimiento de Flota", 525000.00);
+    }
+    
+    public double verificarPuestoSalario(){
+        double salario = puestoSalario.get(String.valueOf(this.txtPuesto.getSelectedItem()));
+        return salario;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnNew;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnUpDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -319,10 +487,12 @@ public class FrmEmployee extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JFormattedTextField txtFechaNacimiento;
+    private javax.swing.JTextField txtIdentificacion;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JComboBox<String> txtPuesto;
+    private javax.swing.JTextField txtSalario;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }
