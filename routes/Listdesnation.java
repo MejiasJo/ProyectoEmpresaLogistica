@@ -38,6 +38,16 @@ public class Listdesnation extends Route {
         }
         return null;
     }
+    
+     public boolean updateRout(Route rountes) {
+        if (routes.contains(rountes)) {
+            routes.remove(rountes);
+            routes.add(rountes);
+            return true;
+        }
+        return false;
+    }
+    
     public Route[] filterRoutes(String description) {
        
         HashSet<Route> filteredRoutes = new HashSet<>();

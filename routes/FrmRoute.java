@@ -1,39 +1,73 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package routes;
 
-
 import java.util.Arrays;
 import java.util.HashSet;
+import javax.swing.JOptionPane;
+
+import javax.swing.table.DefaultTableModel;
+import routes.FrmSearchRoute;
+import routes.Listdesnation;
+import routes.Route;
 
 /**
  *
  * @author Usuario
  */
 public class FrmRoute extends javax.swing.JInternalFrame {
-     
 
-     
-    
+    private static int count = 1;
     Listdesnation list;
     Route rout;
-    
-    
-    
-    
-    
+    DefaultTableModel tabla;
+
+    public Route getEmplo() {
+        return rout;
+    }
+
+    public void setEmplo(Route emplo) {
+        this.rout = emplo;
+    }
+
+    public Listdesnation getList() {
+        return list;
+    }
+
+    public void setList(Listdesnation list) {
+        this.list = list;
+    }
+
     /**
      * Creates new form FrmRoute
      */
     public FrmRoute() {
         initComponents();
-        this.BotAdd.setEnabled(false);
-        this.btnUpdate.setEnabled(false);
-        this.TxTSearch.setEnabled(false);
+        this.BotAdd.setEnabled(true);
+        this.btnLimpiar.setEnabled(true);
+        this.btnSearch.setEnabled(true);
         this.setLocale(null);
-         rout = new Listdesnation();
+        list = new Listdesnation();
+    }
+
+    public void destino() {
+
+        String[] descriptionsArray = TxTDescripList.getText().split(",");
+        //HashSet<String> listDescriptions = new HashSet<>(Arrays.asList(descriptionsArray)); 
+        for (String destino : descriptionsArray) {
+            rout.addDestiny(destino);
+        }
+    }
+
+    public void comprovacionDesti() throws Exception {
+        String text = "Separe los destinos con  ','";
+        if (this.TxTDescripList.getText().toLowerCase().equals(text.toLowerCase())
+                || this.TxTDescripList.getText().equals("")) {
+            throw new Exception();
+        }
     }
 
     /**
@@ -48,8 +82,8 @@ public class FrmRoute extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         BotAdd = new javax.swing.JButton();
-        TxTSearch = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         TxTCode = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -58,8 +92,8 @@ public class FrmRoute extends javax.swing.JInternalFrame {
         TxTDescription = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         TxTName = new javax.swing.JTextField();
-        TxTDelete1 = new javax.swing.JButton();
-        btnUpdate1 = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
         setTitle("Administrador de rutas de entrega");
@@ -86,33 +120,33 @@ public class FrmRoute extends javax.swing.JInternalFrame {
             }
         });
 
-        TxTSearch.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
-        TxTSearch.setForeground(new java.awt.Color(0, 0, 0));
-        TxTSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Search_64 (2).png"))); // NOI18N
-        TxTSearch.setText("Buscar");
-        TxTSearch.setBorderPainted(false);
-        TxTSearch.setContentAreaFilled(false);
-        TxTSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        TxTSearch.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Search_72 (1).png"))); // NOI18N
-        TxTSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        TxTSearch.addActionListener(new java.awt.event.ActionListener() {
+        btnSearch.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        btnSearch.setForeground(new java.awt.Color(0, 0, 0));
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Search_64 (2).png"))); // NOI18N
+        btnSearch.setText("Buscar");
+        btnSearch.setBorderPainted(false);
+        btnSearch.setContentAreaFilled(false);
+        btnSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSearch.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Search_72 (1).png"))); // NOI18N
+        btnSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxTSearchActionPerformed(evt);
+                btnSearchActionPerformed(evt);
             }
         });
 
-        btnUpdate.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
-        btnUpdate.setForeground(new java.awt.Color(0, 0, 0));
-        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/new_receipt_64.png"))); // NOI18N
-        btnUpdate.setText("Limpiar ");
-        btnUpdate.setBorderPainted(false);
-        btnUpdate.setContentAreaFilled(false);
-        btnUpdate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnUpdate.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/new_receipt_72.png"))); // NOI18N
-        btnUpdate.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnLimpiar.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(0, 0, 0));
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/new_receipt_64.png"))); // NOI18N
+        btnLimpiar.setText("Limpiar ");
+        btnLimpiar.setBorderPainted(false);
+        btnLimpiar.setContentAreaFilled(false);
+        btnLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLimpiar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/new_receipt_72.png"))); // NOI18N
+        btnLimpiar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                btnLimpiarActionPerformed(evt);
             }
         });
 
@@ -120,6 +154,7 @@ public class FrmRoute extends javax.swing.JInternalFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Codigo");
 
+        TxTCode.setEditable(false);
         TxTCode.setBackground(new java.awt.Color(152, 202, 202));
         TxTCode.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         TxTCode.setForeground(new java.awt.Color(0, 0, 0));
@@ -135,6 +170,7 @@ public class FrmRoute extends javax.swing.JInternalFrame {
         TxTDescripList.setBackground(new java.awt.Color(152, 202, 202));
         TxTDescripList.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         TxTDescripList.setForeground(new java.awt.Color(0, 0, 0));
+        TxTDescripList.setText("Separe los destinos con  ','");
         TxTDescripList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxTDescripListActionPerformed(evt);
@@ -153,33 +189,35 @@ public class FrmRoute extends javax.swing.JInternalFrame {
         TxTName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         TxTName.setForeground(new java.awt.Color(0, 0, 0));
 
-        TxTDelete1.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
-        TxTDelete1.setForeground(new java.awt.Color(0, 0, 0));
-        TxTDelete1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shipping_cancel_64.png"))); // NOI18N
-        TxTDelete1.setText("Eliminar");
-        TxTDelete1.setBorderPainted(false);
-        TxTDelete1.setContentAreaFilled(false);
-        TxTDelete1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        TxTDelete1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shipping_cancel_72.png"))); // NOI18N
-        TxTDelete1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        TxTDelete1.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(0, 0, 0));
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shipping_cancel_64.png"))); // NOI18N
+        btnDelete.setText("Eliminar");
+        btnDelete.setBorderPainted(false);
+        btnDelete.setContentAreaFilled(false);
+        btnDelete.setEnabled(false);
+        btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDelete.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shipping_cancel_72.png"))); // NOI18N
+        btnDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxTDelete1ActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
 
-        btnUpdate1.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
-        btnUpdate1.setForeground(new java.awt.Color(0, 0, 0));
-        btnUpdate1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shipping_update_64.png"))); // NOI18N
-        btnUpdate1.setText("Actualizar");
-        btnUpdate1.setBorderPainted(false);
-        btnUpdate1.setContentAreaFilled(false);
-        btnUpdate1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnUpdate1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shipping_update_72.png"))); // NOI18N
-        btnUpdate1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnUpdate1.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        btnUpdate.setForeground(new java.awt.Color(0, 0, 0));
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shipping_update_64.png"))); // NOI18N
+        btnUpdate.setText("Actualizar");
+        btnUpdate.setBorderPainted(false);
+        btnUpdate.setContentAreaFilled(false);
+        btnUpdate.setEnabled(false);
+        btnUpdate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnUpdate.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shipping_update_72.png"))); // NOI18N
+        btnUpdate.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdate1ActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
 
@@ -193,13 +231,13 @@ public class FrmRoute extends javax.swing.JInternalFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(BotAdd)
                         .addGap(42, 42, 42)
-                        .addComponent(TxTSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnUpdate1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
-                        .addComponent(TxTDelete1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -217,7 +255,7 @@ public class FrmRoute extends javax.swing.JInternalFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TxTDescripList, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(TxTDescripList, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 26, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -241,11 +279,11 @@ public class FrmRoute extends javax.swing.JInternalFrame {
                 .addGap(60, 60, 60)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(TxTSearch, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(BotAdd, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnUpdate1, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(TxTDelete1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -289,79 +327,131 @@ public class FrmRoute extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotAddActionPerformed
-        int codes = Integer.parseInt(TxTCode.getText());
-        String names = TxTName.getText();
-        String descriptions = TxTDescription.getText();
-        String[] descriptionsArray = TxTDescripList.getText().split(","); 
-        HashSet<String> listDescriptionss = new HashSet<>(Arrays.asList(descriptionsArray));
-        
-        Route route = new Route(names, descriptions);
-        list.addRount(list.toString()); 
-       
-        TxTCode.setText("");
-        TxTName.setText("");
-        TxTDescription.setText("");
-        TxTDescripList.setText(""); 
-        
-        
+        try {
+            comprovacionDesti();
+            this.TxTCode.setEditable(false);
+            this.TxTName.setEditable(false);
+            this.TxTDescription.setEditable(false);
+            this.TxTDescripList.setEditable(false);
+
+            String nombre = this.TxTName.getText();
+            String description = this.TxTDescription.getText();
+
+            rout = new Route(nombre, description);
+            destino();
+            list.addRount(rout);
+
+            BotAdd.setEnabled(false);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "El campo destino no puede estar vacio o se debe separar por ','");
+        }
+
     }//GEN-LAST:event_BotAddActionPerformed
 
     private void TxTDescripListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxTDescripListActionPerformed
         // TODO add your handling code here:
-        
-        
-        
+
+
     }//GEN-LAST:event_TxTDescripListActionPerformed
 
-    private void TxTSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxTSearchActionPerformed
-      
-      FrmSearchRoute frm = new FrmSearchRoute(null,true);
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+
+        FrmSearchRoute frm = new FrmSearchRoute(null, true);
         frm.setList(list);
-        //frm.Set(null);
+        frm.setLocationRelativeTo(null);
         frm.setVisible(true);
+        this.rout = frm.getRout();
         rout = frm.getRout();
-        if (list!=null) {
-            TxTCode.setText(String.valueOf(list.getCode()));
-            TxTName.setText(list.getName());
-            TxTDescription.setText(list.getDescription());
-            String[] descriptionsArray = TxTDescripList.getText().split(","); 
-        HashSet<String> listDescriptionss = new HashSet<>(Arrays.asList(descriptionsArray));
+        if (this.list != null) {
+            this.TxTCode.setText(String.valueOf(list.getCode()));
+            this.TxTName.setText(list.getName());
+            this.TxTDescription.setText(list.getDescription());
+
+            String[] descriptionsArray = list.getDescription().split(",");
+            HashSet<String> listDescriptions = new HashSet<>(Arrays.asList(descriptionsArray));
+
+            this.TxTDescripList.setText(String.join(",", listDescriptions));
+
+            this.TxTCode.setEditable(false);
+            this.TxTName.setEditable(false);
+            this.TxTDescription.setEditable(false);
+            this.TxTDescripList.setEditable(false);
+
             this.btnUpdate.setEnabled(true);
-            
-            
-    
-       
-    }//GEN-LAST:event_TxTSearchActionPerformed
+            this.btnDelete.setEnabled(true);
+
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+        this.BotAdd.setEnabled(true);
     }
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-       
-         list.deleteRoute(this.rout.getCode());
+
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+
+        this.TxTCode.setEditable(true);
+        this.TxTDescription.setEditable(true);
+        this.TxTName.setEditable(true);
+        this.TxTDescripList.setEditable(true);
+
         this.TxTCode.setText("");
-        this.TxTName.setText("");
         this.TxTDescription.setText("");
-        rout = null;
+        this.TxTName.setText("");
+        this.TxTDescripList.setText("Separe los destinos con  ',' ");
+
+        this.BotAdd.setEnabled(true);
+        this.btnDelete.setEnabled(false);
+        this.btnUpdate.setEnabled(false);
+
+
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+
+        try {
+            this.list.deleteRoute(rout.getCode());
+
+            this.TxTCode.setText("");
+            this.TxTDescription.setText("");
+            this.TxTName.setText("");
+            this.TxTDescripList.setText("");
+
+            list = null;
+            this.btnDelete.setEnabled(false);
+            this.btnUpdate.setEnabled(false);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex);
+        }
+
+
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        int code = Integer.parseInt(this.TxTCode.getText());
+        String nombre = this.TxTName.getText();
+        String description = this.TxTDescription.getText();
+        String[] descriptionsArray = TxTDescripList.getText().split(",");
+        HashSet<String> listDescriptions = new HashSet<>(Arrays.asList(descriptionsArray));
+
+        rout = this.list.searchRoute(code);
+        list.setDescription(description);
+        this.list.updateRout(rout);
+
+        this.btnDelete.setEnabled(false);
+        this.btnUpdate.setEnabled(false);
+
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void TxTDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxTDelete1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxTDelete1ActionPerformed
-
-    private void btnUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUpdate1ActionPerformed
-
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotAdd;
     private javax.swing.JTextField TxTCode;
-    private javax.swing.JButton TxTDelete1;
     private javax.swing.JTextField TxTDescripList;
     private javax.swing.JTextField TxTDescription;
     private javax.swing.JTextField TxTName;
-    private javax.swing.JButton TxTSearch;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton btnUpdate1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
