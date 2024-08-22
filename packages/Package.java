@@ -48,18 +48,6 @@ public class Package {
         return status;
     }
 
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    public void setSender(Customer sender) {
-        this.sender = sender;
-    }
-
     public void setStatus(String status) {
         this.status = PackageStatus.valueOf(status);
     }
@@ -70,10 +58,6 @@ public class Package {
 
     public void setAddressee(Customer addressee) {
         this.addressee = addressee;
-    }
-
-    public void setState(PackageStatus state) {
-        this.status = state;
     }
 
     public void packegeIsNull() throws Exception{
