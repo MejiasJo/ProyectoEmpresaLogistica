@@ -8,7 +8,7 @@ package packages;
  *
  * @author munoz
  */
-public enum PackageState {
+public enum PackageStatus {
    Dispatched,
    Delivered,
    Canceled,
